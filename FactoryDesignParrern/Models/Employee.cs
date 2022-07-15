@@ -14,7 +14,7 @@ namespace FactoryDesignParrern.Models
         public string Department { get; set; }
         public decimal? Hourlypay { get; set; }
         public decimal? Bonus { get; set; }
-        public int? EmployeeTypeId { get; set; }
+        public int EmployeeTypeId { get; set; }
 
         public virtual EmployeeType EmployeeType { get; set; }
     }

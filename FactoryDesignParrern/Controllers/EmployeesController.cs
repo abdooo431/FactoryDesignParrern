@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FactoryDesignParrern.DAL;
 using FactoryDesignParrern.Models;
+using FactoryDesignParrern.Factory;
+using FactoryDesignParrern.PL;
 
 namespace FactoryDesignParrern.Controllers
 {
@@ -61,16 +63,20 @@ namespace FactoryDesignParrern.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (employee.EmployeeTypeId == 1)
-                {
-                    employee.Hourlypay = 8;
-                    employee.Bonus = 10;
-                }
-                else if (employee.EmployeeTypeId == 2)
-                {
-                    employee.Hourlypay = 10;
-                    employee.Bonus = 12;
-                }
+                EmployeesManagerFactory employeesFactory = new EmployeesManagerFactory();
+                IEmployeesManager employeesManager = employeesFactory.GetEmployeesManager(employee.EmployeeTypeId);
+                employee.Hourlypay = employeesManager.GetHourlypay();
+                employee.Bonus= employeesManager.GetBonus();
+                //if (employee.EmployeeTypeId == 1)
+                //{
+                //    employee.Hourlypay = 8;
+                //    employee.Bonus = 10;
+                //}
+                //else if (employee.EmployeeTypeId == 2)
+                //{
+                //    employee.Hourlypay = 10;
+                //    employee.Bonus = 12;
+                //}
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -112,16 +118,20 @@ namespace FactoryDesignParrern.Controllers
             {
                 try
                 {
-                    if (employee.EmployeeTypeId == 1)
-                    {
-                        employee.Hourlypay = 8;
-                        employee.Bonus = 10;
-                    }
-                    else if (employee.EmployeeTypeId == 2)
-                    {
-                        employee.Hourlypay = 10;
-                        employee.Bonus = 12;
-                    }
+                    EmployeesManagerFactory employeesFactory = new EmployeesManagerFactory();
+                    IEmployeesManager employeesManager = employeesFactory.GetEmployeesManager(employee.EmployeeTypeId);
+                    employee.Hourlypay = employeesManager.GetHourlypay();
+                    employee.Bonus = employeesManager.GetBonus();
+                    //if (employee.EmployeeTypeId == 1)
+                    //{
+                    //    employee.Hourlypay = 8;
+                    //    employee.Bonus = 10;
+                    //}
+                    //else if (employee.EmployeeTypeId == 2)
+                    //{
+                    //    employee.Hourlypay = 10;
+                    //    employee.Bonus = 12;
+                    //}
                     _context.Update(employee);
                     await _context.SaveChangesAsync();
                 }
