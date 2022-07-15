@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-#nullable disable
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FactoryDesignParrern.Models
 {
+
     public partial class EmployeeType
     {
         public EmployeeType()

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using FactoryDesignParrern.Models;
+using FactoryDesignParrern.Factory;
 
 #nullable disable
 
@@ -25,8 +26,8 @@ namespace FactoryDesignParrern.DAL
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                optionsBuilder.UseSqlServer("Server=HOME-PC\\AHK;Database=FactoryDesignParrernDB;Trusted_Connection=True;");
+                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                //                optionsBuilder.UseSqlServer("Server=HOME-PC\\AHK;Database=FactoryDesignParrernDB;Trusted_Connection=True;");
             }
         }
 
@@ -44,7 +45,11 @@ namespace FactoryDesignParrern.DAL
 
                 entity.Property(e => e.Hourlypay).HasColumnType("decimal(18, 0)");
 
+                entity.Property(e => e.HouseAllwance).HasColumnType("decimal(18, 0)");
+
                 entity.Property(e => e.JobDescription).HasMaxLength(50);
+
+                entity.Property(e => e.MedicalAllwance).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
@@ -53,6 +58,7 @@ namespace FactoryDesignParrern.DAL
                 entity.HasOne(d => d.EmployeeType)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.EmployeeTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Employee_Employee_Type");
             });
 

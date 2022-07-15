@@ -11,5 +11,9 @@
         {
             return 8;
         }
+        public decimal GetHouseAllwance()
+        {
+            return 150;
+        }
     }
 }

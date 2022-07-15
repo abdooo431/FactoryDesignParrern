@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Server=HOME-PC\AHK;Database=FactoryDesignParrernDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -contextDir DAL  -context AppDBContext

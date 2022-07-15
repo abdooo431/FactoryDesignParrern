@@ -11,5 +11,9 @@
         {
             return 10;
         }
+        public decimal GetMedicalAllwance()
+        {
+            return 100;
+        }
     }
 }

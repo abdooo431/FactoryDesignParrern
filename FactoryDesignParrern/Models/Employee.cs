@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-
-#nullable disable
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FactoryDesignParrern.Models
 {
@@ -15,6 +13,8 @@ namespace FactoryDesignParrern.Models
         public decimal? Hourlypay { get; set; }
         public decimal? Bonus { get; set; }
         public int EmployeeTypeId { get; set; }
+        public decimal? HouseAllwance { get; set; }
+        public decimal? MedicalAllwance { get; set; }
 
         public virtual EmployeeType EmployeeType { get; set; }
     }

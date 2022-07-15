@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FactoryDesignParrern.DAL;
 using FactoryDesignParrern.Models;
-using FactoryDesignParrern.Factory;
+using FactoryDesignParrern.Factory.FactoryMethod;
 using FactoryDesignParrern.PL;
 
 namespace FactoryDesignParrern.Controllers
@@ -63,10 +63,12 @@ namespace FactoryDesignParrern.Controllers
         {
             if (ModelState.IsValid)
             {
-                EmployeesManagerFactory employeesFactory = new EmployeesManagerFactory();
-                IEmployeesManager employeesManager = employeesFactory.GetEmployeesManager(employee.EmployeeTypeId);
-                employee.Hourlypay = employeesManager.GetHourlypay();
-                employee.Bonus= employeesManager.GetBonus();
+                BaseEmployeesFactory employeesFactory = new EmployeesManagerFactory().CreateFactory(employee);
+                employeesFactory.ApplySalary();
+                //EmployeesManagerFactory employeesFactory = new EmployeesManagerFactory();
+                //IEmployeesManager employeesManager = employeesFactory.GetEmployeesManager(employee.EmployeeTypeId);
+                //employee.Hourlypay = employeesManager.GetHourlypay();
+                //employee.Bonus= employeesManager.GetBonus();
                 //if (employee.EmployeeTypeId == 1)
                 //{
                 //    employee.Hourlypay = 8;
@@ -118,10 +120,12 @@ namespace FactoryDesignParrern.Controllers
             {
                 try
                 {
-                    EmployeesManagerFactory employeesFactory = new EmployeesManagerFactory();
-                    IEmployeesManager employeesManager = employeesFactory.GetEmployeesManager(employee.EmployeeTypeId);
-                    employee.Hourlypay = employeesManager.GetHourlypay();
-                    employee.Bonus = employeesManager.GetBonus();
+                    BaseEmployeesFactory employeesFactory = new EmployeesManagerFactory().CreateFactory(employee);
+                    employeesFactory.ApplySalary();
+                    //EmployeesManagerFactory employeesFactory = new EmployeesManagerFactory();
+                    //IEmployeesManager employeesManager = employeesFactory.GetEmployeesManager(employee.EmployeeTypeId);
+                    //employee.Hourlypay = employeesManager.GetHourlypay();
+                    //employee.Bonus = employeesManager.GetBonus();
                     //if (employee.EmployeeTypeId == 1)
                     //{
                     //    employee.Hourlypay = 8;
